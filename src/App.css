@@ -1,0 +1,93 @@
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px 200px;
+  height: calc(100vh - 160px);
+}
+main > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px auto;
+}
+
+button {
+  width: 100%;
+  height: 60px;
+  border-radius: 30px;
+  margin: 5px auto;
+  font-size: 18px;
+  font-weight: none;
+}
+button:hover {
+  opacity: 0.7;
+}
+.selected-button {
+  border: rgb(18, 105, 255) solid 1px;
+}
+
+.last-box {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-top: 30px;
+}
+.total-box {
+  font-size: 30px;
+  font-weight: none;
+}
+
+.buy-button {
+  width: 100px;
+  height: 40px;
+  color: white;
+  background-color: rgb(17, 156, 237);
+  border-radius: 10px;
+  border: none;
+  font-size: 24px;
+}
+
+footer {
+  color: black;
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  font-size: 12px;
+}
+
+footer > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-caracters {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  margin: 0px 3px;
+}
