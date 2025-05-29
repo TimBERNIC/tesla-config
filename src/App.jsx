@@ -15,26 +15,52 @@ const App = () => {
 
   const [total, setTotal] = useState(90700);
 
+  // objets teslas models et colors + function on click
+
   const autonomieModel = {
     model: "Grande Autonomie",
     price: 90700,
+  };
+
+  const autonomieModelFunction = () => {
+    isSelected1 === false && setModelPrice(autonomieModel.price);
+    setIsSelected1(true);
+    setIsSelected2(false);
+    setTotal(autonomieModel.price + colorPrice);
   };
   const performanceModel = {
     model: "Performance",
     price: 106700,
   };
+
+  const performanceModelFunction = () => {
+    isSelected2 === false && setModelPrice(performanceModel.price);
+    setIsSelected2(true);
+    setIsSelected1(false);
+    setTotal(performanceModel.price + colorPrice);
+  };
   const blancColor = {
     color: "Blanc Nacré multicouche",
     price: 0,
+  };
+
+  const blancColorFunction = () => {
+    isSelected3 === false && setColorPrice(blancColor.price);
+    setIsSelected3(true);
+    setIsSelected4(false);
+    setTotal(modelPrice + blancColor.price);
   };
   const blackColor = {
     color: "Noir uni",
     price: 1000,
   };
+  const blackColorFunction = () => {
+    isSelected4 === false && setColorPrice(blackColor.price);
+    setIsSelected4(true);
+    setIsSelected3(false);
+    setTotal(modelPrice + blackColor.price);
+  };
 
-  console.log(modelPrice);
-  console.log(colorPrice);
-  console.log(total);
   return (
     <>
       <header>Telsa Config</header>
@@ -42,10 +68,7 @@ const App = () => {
         <Title title="Sélectionnez votre véhicule" />
         <Button
           functionOnClick={() => {
-            isSelected1 === false && setModelPrice(autonomieModel.price);
-            setIsSelected1(true);
-            setIsSelected2(false);
-            setTotal(autonomieModel.price + colorPrice);
+            autonomieModelFunction();
           }}
           className={isSelected1 ? "selected-button" : "not-selected-button"}
           model={autonomieModel.model}
@@ -53,10 +76,7 @@ const App = () => {
         />
         <Button
           functionOnClick={() => {
-            isSelected2 === false && setModelPrice(performanceModel.price);
-            setIsSelected2(true);
-            setIsSelected1(false);
-            setTotal(performanceModel.price + colorPrice);
+            performanceModelFunction();
           }}
           className={isSelected2 ? "selected-button" : "not-selected-button"}
           model={performanceModel.model}
@@ -65,10 +85,7 @@ const App = () => {
         <Title title="Sélectionnez la couleur" />
         <Button
           functionOnClick={() => {
-            isSelected3 === false && setColorPrice(blancColor.price);
-            setIsSelected3(true);
-            setIsSelected4(false);
-            setTotal(modelPrice + blancColor.price);
+            blancColorFunction();
           }}
           className={isSelected3 ? "selected-button" : "not-selected-button"}
           model={blancColor.color}
@@ -77,10 +94,7 @@ const App = () => {
 
         <Button
           functionOnClick={() => {
-            isSelected4 === false && setColorPrice(blackColor.price);
-            setIsSelected4(true);
-            setIsSelected3(false);
-            setTotal(modelPrice + blackColor.price);
+            blackColorFunction();
           }}
           className={isSelected4 ? "selected-button" : "not-selected-button"}
           model={blackColor.color}
