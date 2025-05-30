@@ -5,101 +5,72 @@ import Title from "./assets/components/Title";
 import BuyButton from "./assets/components/BuyButton";
 
 const App = () => {
+  //  tableau pour chaque paire de boutons
+  const models = [
+    { id: "autonomie", model: "Grande Autonomie", price: 90700 },
+    { id: "performance", model: "Performance", price: 106700 },
+  ];
+
+  const colors = [
+    { id: "white", color: "Blanc Nacré multicouche", price: 0 },
+    { id: "black", color: "Noir uni", price: 1000 },
+  ];
+
   // Mises a jours des états
-  const [isSelected1, setIsSelected1] = useState(true);
-  const [isSelected2, setIsSelected2] = useState(false);
-  const [isSelected3, setIsSelected3] = useState(false);
-  const [isSelected4, setIsSelected4] = useState(false);
-  const [modelPrice, setModelPrice] = useState(90700);
-  const [colorPrice, setColorPrice] = useState(0);
+  // states
+  const [selectedModelId, setSelectedModelId] = useState("autonomie");
+  const [selectedColorId, setSelectedColorId] = useState("white");
 
-  const [total, setTotal] = useState(90700);
+  // fonction onClick
 
-  // objets teslas models et colors + function on click
-
-  const autonomieModel = {
-    model: "Grande Autonomie",
-    price: 90700,
+  const handleModelClick = (id) => {
+    setSelectedModelId(id);
   };
 
-  const autonomieModelFunction = () => {
-    isSelected1 === false && setModelPrice(autonomieModel.price);
-    setIsSelected1(true);
-    setIsSelected2(false);
-    setTotal(autonomieModel.price + colorPrice);
+  const handleColorClick = (id) => {
+    setSelectedColorId(id);
   };
-  const performanceModel = {
-    model: "Performance",
-    price: 106700,
-  };
+  //  changement de prix
+  const selectedModel = models.find((model) => model.id === selectedModelId);
+  const selectedColor = colors.find((color) => color.id === selectedColorId);
 
-  const performanceModelFunction = () => {
-    isSelected2 === false && setModelPrice(performanceModel.price);
-    setIsSelected2(true);
-    setIsSelected1(false);
-    setTotal(performanceModel.price + colorPrice);
-  };
-  const blancColor = {
-    color: "Blanc Nacré multicouche",
-    price: 0,
-  };
-
-  const blancColorFunction = () => {
-    isSelected3 === false && setColorPrice(blancColor.price);
-    setIsSelected3(true);
-    setIsSelected4(false);
-    setTotal(modelPrice + blancColor.price);
-  };
-  const blackColor = {
-    color: "Noir uni",
-    price: 1000,
-  };
-  const blackColorFunction = () => {
-    isSelected4 === false && setColorPrice(blackColor.price);
-    setIsSelected4(true);
-    setIsSelected3(false);
-    setTotal(modelPrice + blackColor.price);
-  };
+  const total = selectedModel.price + selectedColor.price;
 
   return (
     <>
       <header>Telsa Config</header>
       <main>
         <Title title="Sélectionnez votre véhicule" />
-        <Button
-          functionOnClick={() => {
-            autonomieModelFunction();
-          }}
-          className={isSelected1 ? "selected-button" : "not-selected-button"}
-          model={autonomieModel.model}
-          price={autonomieModel.price + " €"}
-        />
-        <Button
-          functionOnClick={() => {
-            performanceModelFunction();
-          }}
-          className={isSelected2 ? "selected-button" : "not-selected-button"}
-          model={performanceModel.model}
-          price={performanceModel.price + " €"}
-        />
-        <Title title="Sélectionnez la couleur" />
-        <Button
-          functionOnClick={() => {
-            blancColorFunction();
-          }}
-          className={isSelected3 ? "selected-button" : "not-selected-button"}
-          model={blancColor.color}
-          price={blancColor.price + " €"}
-        />
 
-        <Button
-          functionOnClick={() => {
-            blackColorFunction();
-          }}
-          className={isSelected4 ? "selected-button" : "not-selected-button"}
-          model={blackColor.color}
-          price={blackColor.price + " €"}
-        />
+        {models.map((model) => (
+          <Button
+            key={model.id}
+            functionOnClick={() => handleModelClick(model.id)}
+            className={
+              selectedModelId === model.id
+                ? "selected-button"
+                : "not-selected-button"
+            }
+            model={model.model}
+            price={`${model.price} €`}
+          />
+        ))}
+
+        <Title title="Sélectionnez la couleur" />
+
+        {colors.map((color) => (
+          <Button
+            key={color.id}
+            functionOnClick={() => handleColorClick(color.id)}
+            className={
+              selectedColorId === color.id
+                ? "selected-button"
+                : "not-selected-button"
+            }
+            color={color.color}
+            price={`${color.price} €`}
+          />
+        ))}
 
         <div className="last-box">
           <div className="total-box">{total + " €"}</div>
