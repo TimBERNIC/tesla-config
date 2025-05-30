@@ -3,6 +3,7 @@ import "./App.css";
 import Button from "./assets/components/Button";
 import Title from "./assets/components/Title";
 import BuyButton from "./assets/components/BuyButton";
+import Footer from "./assets/components/Footer";
 
 const App = () => {
   //  tableau pour chaque paire de boutons
@@ -83,22 +84,7 @@ const App = () => {
           />
         </div>
       </main>
-
-      <footer>
-        <div className="container">
-          This exercice was made with{" "}
-          <span className="footer-caracters"> React </span> by
-          <a href="https://github.com/TimBERNIC" className="footer-caracters">
-            {" "}
-            TimBERNIC{" "}
-          </a>{" "}
-          with
-          <a href="https://www.lereacteur.io/" className="footer-caracters">
-            {" "}
-            LE REACTEUR{" "}
-          </a>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 };
